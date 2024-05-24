@@ -36,7 +36,7 @@ You will find the SQL for the server hiding in 'resources/sql/queries.sql'. The 
 
 My use of integrant is not great. Forgive me :-)
 
-All the SQL is converted automagically to clojure functions that are retrievable using the query-fn and the SQL name as a key. So, retieving the SQL named 'show-status' is done with the line of code ... '((query-fn) :show-status {})'.
+All the SQL is converted automagically to clojure functions that are retrievable using the query-fn and the SQL name as a key. So, retieving and calling the SQL named 'show-status' is done with the line of code ... '((query-fn) :show-status {})'.
 
 Migrations, both up and down, work just like the Kit website explains. Also, the SQL in 'queries.sql' works the same as the Kit website explains.
 
