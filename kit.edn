@@ -1,0 +1,8 @@
+{:full-name "shogidude/pforacle2024"
+ :ns-name   "shogidude.pforacle2024"
+ :sanitized "shogidude/pforacle2024"
+ :name      "pforacle2024"
+ :modules   {:root         "modules"
+             :repositories [{:url  "https://github.com/kit-clj/modules.git"
+                             :tag  "master"
+                             :name "kit-modules"}]}}
