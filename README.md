@@ -38,6 +38,30 @@ All the SQL is converted automagically to clojure functions that are retrievable
 
 Migrations, both up and down, work just like the Kit website explains. Also, the SQL in 'queries.sql' works the same as the Kit website explains.
 
+### Raw Redis
+
+Currently, the Kit website explains caching using Redis, but isn't extremely clear on how to use Redis all by itself. Some features of Redis have nothing to do with caching, after all.
+
+The developers over at Kit made a great decision using Carmine for their Redis integrations. You can pretty much do anything that Redis allows with Carmine. However, you might need a little help figuring out how to use Redis directly in your Kit web application.
+
+Check out the 'shogidude.pforacle2024.integrations.redis.redis-system' namespace. Specifically, you want to use the following code to get Kit and Carmine playing nice.
+
+`(ns shogidude.pforacle2024.integrations.redis.redis-system
+  (:require
+    [integrant.repl.state :as state]
+    [taoensso.carmine :as car :refer (wcar)]
+    ))
+
+(defn redis-connection []
+  (:cache/redis state/system))
+
+(defmacro wcar* [& body] `(car/wcar (redis-connection) ~@body))
+
+(defn ping-redis []
+  (wcar* (car/ping)))`
+
+Again, I'm new to Integrant, so there might be better ways of getting (:cache/redis state/system) for your connection. The rest of the code is easily understood when you read through the Carmine Redis library's documentation.
+
 ## Running and Developing in Dev Mode
 
 Start a [REPL](#repls) in your editor or terminal of choice.
