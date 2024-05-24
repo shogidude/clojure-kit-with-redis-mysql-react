@@ -46,7 +46,7 @@ The developers over at Kit made a great decision using Carmine for their Redis i
 
 Check out the 'shogidude.pforacle2024.integrations.redis.redis-system' namespace. Specifically, you want to use the following code to get Kit and Carmine playing nice.
 
-`(ns shogidude.pforacle2024.integrations.redis.redis-system
+<code><pre>(ns shogidude.pforacle2024.integrations.redis.redis-system
   (:require
     [integrant.repl.state :as state]
     [taoensso.carmine :as car :refer (wcar)]
@@ -58,7 +58,7 @@ Check out the 'shogidude.pforacle2024.integrations.redis.redis-system' namespace
 (defmacro wcar* [& body] `(car/wcar (redis-connection) ~@body))
 
 (defn ping-redis []
-  (wcar* (car/ping)))`
+  (wcar* (car/ping)))</pre></code>
 
 Again, I'm new to Integrant, so there might be better ways of getting (:cache/redis state/system) for your connection. The rest of the code is easily understood when you read through the Carmine Redis library's documentation.
 
