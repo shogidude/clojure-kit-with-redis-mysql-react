@@ -32,7 +32,7 @@ You will need all the Node and npm goodies installed. Look up the first few step
 
 ### MySQL, SQL, and Migrations
 
-You will find the SQL for the server hiding in 'resources/sql/queries'. The function for calling the sample SQL is found in 'shogidude.pforacle2024.integrations.db.system-queries'. 
+You will find the SQL for the server hiding in 'resources/sql/queries.sql'. The function for calling the sample SQL is found in 'shogidude.pforacle2024.integrations.db.system-queries'. 
 
 My use of integrant is not great. Forgive me :-)
 
