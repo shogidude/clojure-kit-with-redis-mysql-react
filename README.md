@@ -2,11 +2,21 @@
 
 The developers over at [Kit](https://kit-clj.github.io/) have done a great job setting up a Clojure-specific, opinionated web application framework. Absolutely, my favorite web server framework.
 
-Having said that, currently there are some missing examples and documentation for Redis, MySQL and ReactJS setups. I really don't have the time to invest in making modules or profiles for the project. However, I do have time to present a fully working version of Kit under the MIT license with the Redis, MySQL, RESTful APIs, nREPL and React fully integrated.
+Having said that, currently there are some missing examples and documentation for Redis, MySQL and ReactJS setups. I really don't have the time to invest in making modules or profiles for the project. However, I do have time to present a fully working version of Kit under the MIT license with the raw Redis, MySQL, RESTful APIs, nREPL, migrations and React fully integrated.
 
 Some of the code here is probably under other licenses than MIT. I have left all code licenses in place if they were shipped with a license. Check with the original creator of React and other libraries for their current licensing.
 
 ![alt Health Status component in React page](https://raw.githubusercontent.com/shogidude/clojure-kit-with-redis-mysql-react/main/readme_healthstatus.png)
+
+## Reason and History of this Project
+
+You will notice references to 'shogidude.pforacle2024' sprinkled around the code. That is because I derived this code from that project. Also, the React client code is in 'gmclient', short for Game Master Client. There are probably other references I'm not aware of. Replace those references with your own project names, but don't forget to modify paths and namespaces when needed.
+
+I was working on my [backrooms.net PFOracle](https://backrooms.net) web application for playing RPGs (especially Pathfinder) solo, and realized my custom configuration of the Clojure Kit web framework wasn't really documented any where. Since I strongly believe that if you use opensource software you should give back to the community, I felt I should release this setup for developers that needed some help setting up their Clojure web server.
+
+Some of the things (currently) missing for Clojure Kit, but found here include: raw Redis connections and interactions; Mysql setup with a connection pool; and a deployable React client set up with the ability to use 'npm start' so that you can develop on the server's REPL and the client's React code at the same time.
+
+Starting with React, their is a component built in with this deployment that uses 'fetch' to grab the Clojure Kit server's current health status. (That's the image above.)
 
 ## What you'll need
 
