@@ -1,4 +1,17 @@
-# pforacle2024
+# Clojure Kit Framework with Redis, MySQL, ReactJS and RESTful APIs
+
+The developers over at [Kit](https://kit-clj.github.io/) have donea great job setting up a Clojure-specific, opinionated web application framework. Absolutely, my favorite web server framework.
+
+Having said that, currently there are some missing examples and documentation for Redis, MySQL and ReactJS setups. I really don't have the time to invest in making modules or profiles for the project. However, I do have time to present a fully working version of Kit under the MIT license with the Redis, MySQL, RESTful APIs, nREPL and React fully integrated.
+
+Some of the code here is probably under other licenses than MIT. I have left all code licenses in place if they were shipped with a license. Check with the original creator of React and other libraries for their current licensing.
+
+![alt Health Status component in React page](https://raw.githubusercontent.com/shogidude/clojure-kit-with-redis-mysql-react/main/readme_healthstatus.png)
+
+## What you'll need
+
+You will need a running copy of MySQL.
+
 
 Start a [REPL](#repls) in your editor or terminal of choice.
 
