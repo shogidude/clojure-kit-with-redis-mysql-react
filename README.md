@@ -10,7 +10,7 @@ Some of the code here is probably under other licenses than MIT. I have left all
 
 ![alt Health Status component in React page](https://raw.githubusercontent.com/shogidude/clojure-kit-with-redis-mysql-react/main/readme_healthstatus.png)
 
-<em>The image above is a React component in with this deployment that uses 'fetch' to grab the Clojure Kit server's current health status.</em>
+<em>The image above is a React component in this deployment that uses 'fetch' to grab the Clojure Kit server's current health status.</em>
 
 ## Reason and History of this Project
 
