@@ -12,7 +12,7 @@ Some of the code here is probably under other licenses than MIT. I have left all
 
 You will need a running copy of MySQL. For development, I recommend 'localhost' with the standard port. You will find the connection string with username and password in 'resources/system.edn'. DON'T FORGET TO URL ENCODE THE PASSWORD. It will cause you major headaches if you forget.
 
-You will need a running copy of Redis. For this version, I don't have a password setup. I have set up a password on other projects using this library. It's very doable. If you can't figure it out, drop me message, and if I have time, I'll see if I can help.
+You will need a running copy of Redis. For this version, I don't have a password setup. I have set up a password on other projects using this library. It's very doable. If you can't figure it out, drop me message, and if I have time, I'll see if I can help. Look in 'resources/system.edn' for the Redis configurations.
 
 You will need all the Node and npm goodies installed. Look up the first few steps of creating React projects. Those instructions almost always explain the process.
 
