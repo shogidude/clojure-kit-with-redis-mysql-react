@@ -26,6 +26,18 @@ You will need a running copy of Redis. For this version, I don't have a password
 
 You will need all the Node and npm goodies installed. Look up the first few steps of creating React projects. Those instructions almost always explain the process.
 
+## Notable Files and Configurations
+
+### MySQL, SQL, and Migrations
+
+You will find the SQL for the server hiding in 'resources/sql/queries'. The function for calling the sample SQL is found in 'shogidude.pforacle2024.integrations.db.system-queries'. 
+
+My use of integrant is not great. Forgive me :-)
+
+All the SQL is converted automagically to clojure functions that are retrievable using the query-fn and the SQL name as a key. So, retieving the SQL named 'show-status' is done with the line of code ... '((query-fn) :show-status {})'.
+
+Migrations, both up and down, work just like the Kit website explains. Also, the SQL in 'queries.sql' works the same as the Kit website explains.
+
 ## Running and Developing in Dev Mode
 
 Start a [REPL](#repls) in your editor or terminal of choice.
