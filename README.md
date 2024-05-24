@@ -62,14 +62,36 @@ Check out the 'shogidude.pforacle2024.integrations.redis.redis-system' namespace
 
 Again, I'm new to Integrant, so there might be better ways of getting (:cache/redis state/system) for your connection. The rest of the code is easily understood when you read through the Carmine Redis library's documentation.
 
+### React Client
+
+React, often refered to as ReactJS, works great with the Clojure Kit web framework. However, if you are newish to Kit or React, it might be a bit of a challenge getting your server and your development environment set up.
+
+The first trick is to create your React project inside of your Kit project. Your React client becomes a sub-project of your Clojure Kit project.
+
+Next, you need a deploy script. The current one in this project is made for *nix computers including Apple computers. You can easily modify it if you work on a Windows box. Just ask one of the many decent LLMs for help if you get stuck. 
+
+You will find the delpoyment script in, 'gmclient/package.json'. <strong>CAUTION:</strong> <em>The React 'deploy' script deletes the resources/public directory every time it is run, so don't get too attached to anything in that directory.</em>
+
+The other trick is setting up the React project to allow 'npm start' based development to take place while you develop with your running Clojere Kit project. First, I changed the port that 'npm start' runs on to 3002. Next, I added the proxy setting to 'package.json' so that fetching relative paths would work. See the fetch example in HealthStatus.jsx, if you want to see it in action.
+
 ## Running and Developing in Dev Mode
 
-Start a [REPL](#repls) in your editor or terminal of choice.
+For Clojure's Kit, cd to your Kit project root, and start a [REPL](#repls) in your editor or terminal of choice using the following command for development servers.
 
-Start the server with:
+```
+clj -M:dev
+```
+
+Start the Clojure Kit server with:
 
 ```clojure
 (go)
+```
+
+Stop the Clojure Kit server with:
+
+```clojure
+(halt)
 ```
 
 The default API is available under http://localhost:3000/api
@@ -81,6 +103,8 @@ To reload changes:
 ```clojure
 (reset)
 ```
+
+For React, cd to your React project root and use the standard 'npm start'
 
 ## REPLs
 
