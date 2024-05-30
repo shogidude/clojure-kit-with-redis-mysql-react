@@ -76,6 +76,36 @@ You will find the delpoyment script in, 'gmclient/package.json'. <strong>CAUTION
 
 The other trick is setting up the React project to allow 'npm start' based development to take place while you develop with your running Clojere Kit project. First, I changed the port that 'npm start' runs on to 3002. Next, I added the proxy setting to 'package.json' so that fetching relative paths would work. See the fetch example in HealthStatus.jsx, if you want to see it in action.
 
+### React Router
+
+If you are using React Router, you need to update the Clojure Kit handler.clj's ig/init-key method. It needs to have the index.html handle 404's. It would need to look something like this.
+
+<code><pre>
+(defmethod ig/init-key :handler/ring
+  [_ {:keys [router api-path] :as opts}]
+  (ring/ring-handler
+   (router)
+    (ring/routes
+     ;; Handle trailing slash in routes - add it + redirect to it
+     ;; https://github.com/metosin/reitit/blob/master/doc/ring/slash_handler.md 
+     (ring/redirect-trailing-slash-handler)
+     (ring/create-resource-handler {:path "/" :root "public"})
+     (when (some? api-path)
+       (swagger-ui/create-swagger-ui-handler {:path api-path
+                                              :url  (str api-path "/swagger.json")}))
+     (ring/create-default-handler
+       {
+        :not-found
+        (constantly (ring.util.response/redirect "/index.html"))
+        :method-not-allowed
+        (constantly (-> {:status 405, :body "Not allowed"}
+                       (http-response/content-type "text/plain")))
+        :not-acceptable
+        (constantly (-> {:status 406, :body "Not acceptable"}
+                       (http-response/content-type "text/plain")))}))
+    {:middleware [(middleware/wrap-base opts)]}))
+</pre></code>
+
 ## Running and Developing in Dev Mode
 
 For Clojure's Kit, cd to your Kit project root, and start a [REPL](#repls) in your editor or terminal of choice using the following command for development servers.
