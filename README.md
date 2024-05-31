@@ -80,23 +80,28 @@ The other trick is setting up the React project to allow 'npm start' based devel
 
 If you are using React Router, you need to update the Clojure Kit handler.clj's ig/init-key method. It needs to have the index.html handle 404's. It would need to look something like this.
 
-<code><pre>
+```
+(defn index-handler []
+  (-> (resource-response "index.html" {:root "public"})
+      (http-response/content-type "text/html")))
+
 (defmethod ig/init-key :handler/ring
   [_ {:keys [router api-path] :as opts}]
   (ring/ring-handler
-   (router)
+    (router)
     (ring/routes
      ;; Handle trailing slash in routes - add it + redirect to it
-     ;; https://github.com/metosin/reitit/blob/master/doc/ring/slash_handler.md 
+     ;; https://github.com/metosin/reitit/blob/master/doc/ring/slash_handler.md
      (ring/redirect-trailing-slash-handler)
-     (ring/create-resource-handler {:path "/" :root "public"})
      (when (some? api-path)
        (swagger-ui/create-swagger-ui-handler {:path api-path
                                               :url  (str api-path "/swagger.json")}))
      (ring/create-default-handler
        {
         :not-found
-        (constantly (ring.util.response/redirect "/index.html"))
+        (constantly (index-handler))
+         ;(constantly (-> {:status 404, :body "Page not found"}
+         ;                (http-response/content-type "text/plain")))
         :method-not-allowed
         (constantly (-> {:status 405, :body "Not allowed"}
                        (http-response/content-type "text/plain")))
@@ -104,7 +109,7 @@ If you are using React Router, you need to update the Clojure Kit handler.clj's 
         (constantly (-> {:status 406, :body "Not acceptable"}
                        (http-response/content-type "text/plain")))}))
     {:middleware [(middleware/wrap-base opts)]}))
-</pre></code>
+```
 
 ## Running and Developing in Dev Mode
 
